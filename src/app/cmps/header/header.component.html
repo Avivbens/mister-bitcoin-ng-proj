@@ -1,0 +1,30 @@
+<section class="app-header">
+    <nav>
+        <button (click)="onChangePage('home')">
+            <img src="../../../assets/imgs/home.png"
+                alt="person" />
+        </button>
+        <button (click)="onChangePage('contact')">
+            <img src="../../../assets/imgs/users.png"
+                alt="person" />
+        </button>
+        <button (click)="onChangePage('charts')">
+            <img src="../../../assets/imgs/increase.png"
+                alt="person" />
+        </button>
+        <ng-container *ngIf="user; else elseTemplate">
+            <button (click)="onLogout()">
+                <span>Logout</span>
+            </button>
+        </ng-container>
+        <ng-template #elseTemplate>
+            <button (click)="onChangePage('signup')">
+                <span>Signup</span>
+            </button>
+
+            <button (click)="onChangePage('signup')">
+                <span>Login</span>
+            </button>
+        </ng-template>
+    </nav>
+</section>

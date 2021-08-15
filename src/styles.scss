@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    font-family: roboto;
+
+    height: 100%;
+    min-height: calc(100vh - 20px);
+    margin: 0;
+
+    background-image: url("./assets/imgs/bgc.jpg");
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.btn {
+    border: none;
+    background-color: #0084ee;
+    color: white;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+button {
+    cursor: pointer;
+}
+
+@font-face {
+    font-family: roboto;
+    src: url(assets/fonts/Roboto-Regular.ttf);
+}
+@font-face {
+    font-family: roboto-bold;
+    src: url(assets/fonts/Roboto-Bold.ttf);
+}

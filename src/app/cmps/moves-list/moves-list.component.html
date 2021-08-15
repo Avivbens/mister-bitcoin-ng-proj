@@ -1,0 +1,20 @@
+<section [ngClass]="{'moves-list': true, full: fullView}">
+    <h4 class="title">Moves History:</h4>
+
+    <label class="move-preview"
+        *ngFor="let move of moves">
+        <p>
+            <span class="currencies">
+                <span class="bitcoin">B {{move.amount}}</span> |
+                <span class="dollar">$ {{(move.amount / +rate).toFixed(2)}}</span>
+            </span>
+            <br />
+            <ng-template *ngIf="fullView">
+                To: {{move.to}}
+            </ng-template>
+        </p>
+        <p>
+            {{ move.at | date:"MM/dd/yy" }}
+        </p>
+    </label>
+</section>

@@ -1,0 +1,42 @@
+<section class="contact-edit">
+    <div class="btns">
+        <button (click)="goBack()">
+            <img src="../../../assets/imgs/back.png"
+                alt="back">
+        </button>
+        <button (click)="removeContact()">
+            <img src="../../../assets/imgs/delete.png"
+                alt="delete">
+        </button>
+    </div>
+
+    <img src="../../../assets/imgs/contact.png"
+        alt="contact">
+    <form (submit)="saveContact()"
+        class="edit-contact"
+        *ngIf="contact">
+
+        <label>
+            <span>Name</span>
+            <input class="name"
+                name="name"
+                [(ngModel)]="contact.name"
+                autoComplete="off" />
+        </label>
+        <label>
+            <span>Phone</span>
+            <input class="phone"
+                name="phone"
+                [(ngModel)]="contact.phone" />
+        </label>
+        <label>
+            <span>Email</span>
+            <input class="email"
+                name="email"
+                [(ngModel)]="contact.email" />
+        </label>
+
+
+        <button class="btn">Save</button>
+    </form>
+</section>

@@ -1,0 +1,17 @@
+<section class="contacts-page">
+    <div class="control-area">
+        <input id="term"
+            type="text"
+            placeholder="Search"
+            [(ngModel)]="term"
+            (input)="onSetFilter()"
+            name="term" />
+
+        <button (click)="goBack()">
+            <img src="../../../assets/imgs/plus.png"
+                alt="add" />
+        </button>
+    </div>
+
+    <app-contact-list [contacts]="contacts"></app-contact-list>
+</section>

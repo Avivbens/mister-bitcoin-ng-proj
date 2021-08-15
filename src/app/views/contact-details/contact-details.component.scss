@@ -1,0 +1,55 @@
+.contact-details {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    margin-top: 20px;
+
+    > img {
+        width: 100px;
+    }
+
+    > p {
+        margin: 8px 0;
+        font-size: 14px;
+    }
+
+    > .name {
+        font-size: 24px;
+        color: rgb(230, 102, 123);
+    }
+
+    > .btns {
+        display: flex;
+        justify-content: space-between;
+        width: 320px;
+        gap: 10px;
+
+        margin-bottom: 20px;
+
+        > button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 40px;
+            height: 40px;
+            border: none;
+            background-color: transparent;
+            border-radius: 3em;
+            transition: all 0.3s;
+
+            > img {
+                width: 100%;
+            }
+
+            &:hover {
+                background-color: rgb(235, 235, 235);
+            }
+        }
+    }
+
+    > .moves-list {
+        width: 70%;
+    }
+}

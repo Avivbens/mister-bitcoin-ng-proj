@@ -1,0 +1,26 @@
+<section class="home-page">
+    <div class="layout">
+        <ng-container *ngIf="user; else elseTemplate">
+            <h3 class="title">Hi, {{user.fullname}} !</h3>
+            <div class="data">
+                <span class="left">
+                    <span>Current Balance</span>
+                    <p class="bitcoin">BIT: <span>B {{user.balance.toLocaleString('en-GB')}}</span></p>
+                    <!-- <p class="dollar">USD: <span>{{formatter.format(currBitValue)}}</span></p> -->
+                </span>
+                <span class="right">
+                    <span>Current BTC USD</span>
+                    <span class="currency">
+                        <!-- {{formatter.format(1 / currBitRate)}} -->
+                    </span>
+                </span>
+            </div>
+        </ng-container>
+        <ng-template #elseTemplate>
+            <h3>Please Login!</h3>
+        </ng-template>
+
+        <!-- <MovesList user={loggedinUser}
+            fullView={true} /> -->
+    </div>
+</section>
