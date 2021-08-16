@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
+import { GoogleChartsModule } from 'angular-google-charts'
+
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
@@ -13,8 +15,9 @@ import { ContactPageComponent } from './views/contacts-page/contacts-page.compon
 import { ContactDetailsComponent } from './views/contact-details/contact-details.component'
 import { TransferFundComponent } from './cmps/transfer-fund/transfer-fund.component'
 import { MovesListComponent } from './cmps/moves-list/moves-list.component'
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http'
 import { ContactEditComponent } from './views/contact-edit/contact-edit.component'
+import { ChartsComponent } from './views/charts/charts.component'
 
 @NgModule({
     declarations: [
@@ -29,12 +32,15 @@ import { ContactEditComponent } from './views/contact-edit/contact-edit.componen
         TransferFundComponent,
         MovesListComponent,
         ContactEditComponent,
+        ChartsComponent,
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         FormsModule,
-        HttpClientModule
+        HttpClientModule,
+
+        GoogleChartsModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

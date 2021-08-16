@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Observable, BehaviorSubject, of } from 'rxjs'
 import { Contact } from '../models/contact.model'
+import { UserService } from './user.service'
 
 const CONTACTS = [
     {
@@ -131,12 +132,16 @@ export class ContactService {
     private _contacts$ = new BehaviorSubject<Contact[]>([])
     public contacts$ = this._contacts$.asObservable()
 
-    constructor() {
+    constructor(private userService: UserService) {
     }
 
 
     public loadContacts(filterBy: { term: string } = null): void {
-        let contacts = this._contactsDb
+        const _c = JSON.parse(localStorage.contacts || null) || this._contactsDb
+        this._contactsDb = _c
+        localStorage.contacts = JSON.stringify(_c)
+
+        let contacts = _c
         if (filterBy && filterBy.term) {
             contacts = this._filter(contacts, filterBy.term)
         }
@@ -144,6 +149,10 @@ export class ContactService {
     }
 
     public getContactById(id: string): Observable<Contact> {
+        const _c = JSON.parse(localStorage.contacts || null) || this._contactsDb
+        this._contactsDb = _c
+        localStorage.contacts = JSON.stringify(_c)
+
         //mock the server work
         const contact = this._contactsDb.find(contact => contact._id === id)
 
@@ -157,17 +166,63 @@ export class ContactService {
 
         // change the observable data in the service - let all the subscribers know
         this._contacts$.next(this._contactsDb)
+
+        localStorage.contacts = JSON.stringify(this._contactsDb)
     }
 
     public saveContact(contact: Contact) {
         return contact._id ? this._updateContact(contact) : this._addContact(contact)
     }
 
+    public transferTo(contactId: string, amount: number) {
+        // TODO ask from server session
+        return new Promise(async (resolve, reject) => {
+            const loggedinUser = JSON.parse(localStorage.loggedinUser)
+            if (!loggedinUser || !amount || loggedinUser.balance < amount || amount < 0) return reject()
+            try {
+                const contact = await this.getContactById(contactId).toPromise()
+                contact.balance ??= 0
+                contact.balance += amount
+
+                loggedinUser.balance -= amount
+
+
+                const transfer: any = {
+                    toId: contact._id,
+                    to: contact.name,
+                    fromId: loggedinUser._id,
+                    from: loggedinUser.name,
+                    at: Date.now(),
+                    amount
+                }
+                contact.moves ??= []
+                contact.moves.push(transfer)
+
+                // TODO when backend exist, catch and re-verse if not succeed
+                this.saveContact(contact)
+                // await saveContact(loggedinUser)
+
+                loggedinUser.moves ??= []
+                loggedinUser.moves.push(transfer)
+
+                this.userService.updateUser(loggedinUser)
+                // localStorage.loggedinUser = JSON.stringify(loggedinUser)
+
+                return resolve({ loggedinUser, contact })
+            } catch (error) {
+
+            }
+        })
+    }
+
+
     private _updateContact(contact: Contact) {
         //mock the server work
         this._contactsDb = this._contactsDb.map(c => contact._id === c._id ? contact : c)
         // change the observable data in the service - let all the subscribers know
         this._contacts$.next(this._sort(this._contactsDb))
+
+        localStorage.contacts = JSON.stringify(this._contactsDb)
     }
 
     private _addContact(contact: Contact) {
@@ -176,6 +231,8 @@ export class ContactService {
         newContact.setId()
         this._contactsDb.push(newContact)
         this._contacts$.next(this._sort(this._contactsDb))
+
+        localStorage.contacts = JSON.stringify(this._contactsDb)
     }
 
     private _sort(contacts: Contact[]): Contact[] {

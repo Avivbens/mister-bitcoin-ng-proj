@@ -17,6 +17,7 @@
     <p>Email: {{contact.email}}</p>
     <p>Coins: {{contact.balance || 0}}</p>
 
-    <app-transfer-fund [contact]="contact"></app-transfer-fund>
+    <app-transfer-fund (reloadContact)="onReload()"
+        [contact]="contact"></app-transfer-fund>
     <app-moves-list [movesProp]="contact.moves"></app-moves-list>
 </section>

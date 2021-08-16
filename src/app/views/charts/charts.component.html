@@ -1,0 +1,22 @@
+<section class="charts-page">
+    <h1>Bitcoin Statistics</h1>
+
+    <google-chart #chart
+        *ngIf="marketPriceData"
+        [width]="600"
+        [title]="marketPrice.title"
+        [type]="marketPrice.type"
+        [data]="marketPrice.data"
+        [options]="marketPrice.options">
+    </google-chart>
+
+    <google-chart #chart
+        *ngIf="confirmedTransactionsData"
+        [width]="600"
+        [title]="confirmedTransactions.title"
+        [type]="confirmedTransactions.type"
+        [data]="confirmedTransactions.data"
+        [options]="confirmedTransactions.options">
+    </google-chart>
+
+</section>

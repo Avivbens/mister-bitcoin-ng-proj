@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core'
 import {
-    Router, Resolve,
+    Resolve,
     RouterStateSnapshot,
     ActivatedRouteSnapshot
 } from '@angular/router'
-import { Contact } from '../models/contact.model'
 import { ContactService } from '../services/contact.service'
 
 @Injectable({
@@ -16,7 +15,7 @@ export class ContactResolver implements Resolve<boolean> {
 
     async resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<any> {
         const { id } = route.params
-        const contact = await this.contactService.getContactById(id).toPromise()
+        const contact = this.contactService.getContactById(id).toPromise()
 
         return contact
     }

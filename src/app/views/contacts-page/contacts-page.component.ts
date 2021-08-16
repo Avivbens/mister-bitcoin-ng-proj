@@ -28,9 +28,9 @@ export class ContactPageComponent implements OnInit {
         this.contactService.loadContacts({ term: this.term })
     }
 
-    // goBack() {
-    //     this.router.navigateByUrl('')
-    // }
+    addContact() {
+        this.router.navigateByUrl('add')
+    }
 
     ngOnDestroy(): void {
         this.subscription.unsubscribe()

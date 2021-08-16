@@ -12,6 +12,15 @@ export class UserService {
         return this.user
     }
 
+    updateUser(user: User) {
+        this.user = {
+            ...this.user,
+            ...user
+        }
+
+        localStorage.loggedinUser = JSON.stringify(this.user)
+    }
+
     login(credentials: { username: string, password?: string, fullname?: string }) {
         const { username, password, fullname } = credentials
 

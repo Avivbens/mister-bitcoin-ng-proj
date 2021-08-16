@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { ContactResolver } from './resolvers/contact.resolver'
+import { ChartsComponent } from './views/charts/charts.component'
 import { ContactDetailsComponent } from './views/contact-details/contact-details.component'
 import { ContactEditComponent } from './views/contact-edit/contact-edit.component'
 import { ContactPageComponent } from './views/contacts-page/contacts-page.component'
@@ -16,7 +17,7 @@ const routes: Routes = [
     { path: 'contact', component: ContactPageComponent },
 
     { path: 'signup', component: SignupPageComponent },
-    // { path: 'charts', component: contacrCharts },
+    { path: 'charts', component: ChartsComponent },
     { path: '', component: HomepageComponent },
 
 ]

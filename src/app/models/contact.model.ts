@@ -1,6 +1,13 @@
 export class Contact {
 
-    constructor(public _id?: string, public name: string = '', public email: string = '', public phone: string = '', public balance?: number, public moves?: []) {
+    constructor(public _id?: string, public name: string = '', public email: string = '', public phone: string = '', public balance?: number, public moves?: {
+        toId: string,
+        to: string,
+        fromId: string,
+        from: string,
+        at: Date,
+        amount: number
+    }[]) {
 
     }
 

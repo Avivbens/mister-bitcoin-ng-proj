@@ -6,12 +6,12 @@
                 <span class="left">
                     <span>Current Balance</span>
                     <p class="bitcoin">BIT: <span>B {{user.balance.toLocaleString('en-GB')}}</span></p>
-                    <!-- <p class="dollar">USD: <span>{{formatter.format(currBitValue)}}</span></p> -->
+                    <p class="dollar">USD: <span>{{(1 / currBitRate * user.balance)|currency}}</span></p>
                 </span>
                 <span class="right">
                     <span>Current BTC USD</span>
                     <span class="currency">
-                        <!-- {{formatter.format(1 / currBitRate)}} -->
+                        {{(1 / currBitRate)|currency}}
                     </span>
                 </span>
             </div>
@@ -20,7 +20,7 @@
             <h3>Please Login!</h3>
         </ng-template>
 
-        <!-- <MovesList user={loggedinUser}
-            fullView={true} /> -->
+        <app-moves-list [movesProp]="user.moves"
+            [fullView]="true"></app-moves-list>
     </div>
 </section>

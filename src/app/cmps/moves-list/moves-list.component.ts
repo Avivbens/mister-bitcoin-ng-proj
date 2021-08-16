@@ -12,8 +12,7 @@ export class MovesListComponent implements OnInit {
     @Input() fullView: boolean
     @Input() movesProp: Move[]
 
-
-    public rate: Observable<number> = null;
+    public rate: any = null;
 
     constructor(private bitcoinService: BitcoinService) { }
 
@@ -21,7 +20,7 @@ export class MovesListComponent implements OnInit {
         const moves = JSON.parse(JSON.stringify(this.movesProp ?? null))
         moves?.sort((m1: Move, m2: Move): number => +m2.at - +m1.at)
 
-        return moves
+        return this.fullView ? moves : moves?.slice(0, 3)
     }
 
     async ngOnInit(): Promise<any> {
