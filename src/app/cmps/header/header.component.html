@@ -1,14 +1,14 @@
 <section class="app-header">
     <nav>
-        <button (click)="onChangePage('home')">
+        <button routerLink="">
             <img src="../../../assets/imgs/home.png"
                 alt="person" />
         </button>
-        <button (click)="onChangePage('contact')">
+        <button routerLink="contact">
             <img src="../../../assets/imgs/users.png"
                 alt="person" />
         </button>
-        <button (click)="onChangePage('charts')">
+        <button routerLink="charts">
             <img src="../../../assets/imgs/increase.png"
                 alt="person" />
         </button>
@@ -18,11 +18,11 @@
             </button>
         </ng-container>
         <ng-template #elseTemplate>
-            <button (click)="onChangePage('signup')">
+            <button routerLink="signup">
                 <span>Signup</span>
             </button>
 
-            <button (click)="onChangePage('signup')">
+            <button routerLink="/signup">
                 <span>Login</span>
             </button>
         </ng-template>

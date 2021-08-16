@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
+import { ActivatedRoute, Router } from '@angular/router'
+import { Subscription } from 'rxjs'
 import { Contact } from 'src/app/models/contact.model'
 
 @Component({
@@ -8,24 +10,27 @@ import { Contact } from 'src/app/models/contact.model'
 })
 export class ContactDetailsComponent implements OnInit {
 
-    @Input() contact: Contact
+    public contact: Contact = null
+    public subscription: Subscription = null
 
-    ngOnInit(): void {
-        // TODO REMOVE this when have router
-        this.contact = {
-            "_id": "5a56640269f443a5d64b32ca",
-            "name": "Ochoa Hyde",
-            "email": "ochoahyde@renovize.com",
-            "phone": "+1 (968) 593-3824"
-        }
+    constructor(private router: Router, private route: ActivatedRoute) { }
+
+
+    async ngOnInit(): Promise<void> {
+        this.subscription = this.route.data.subscribe(data => {
+            this.contact = data.contact
+        })
     }
 
     editContact() {
-        // TODO
+        this.router.navigateByUrl('edit/' + this.contact._id)
     }
 
     goBack() {
-        // TODO
+        this.router.navigateByUrl('contact')
     }
 
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe()
+    }
 }

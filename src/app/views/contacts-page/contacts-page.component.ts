@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+import { Subscription } from 'rxjs'
+import { Contact } from 'src/app/models/contact.model'
 import { ContactService } from 'src/app/services/contact.service'
 
 @Component({
@@ -7,28 +10,29 @@ import { ContactService } from 'src/app/services/contact.service'
     styleUrls: ['./contacts-page.component.scss']
 })
 export class ContactPageComponent implements OnInit {
-    public contacts: any = null
+    public contacts$: Contact[] = null
     public term = ''
 
-    constructor(private contactService: ContactService) { }
+    private subscription: Subscription = null
+
+    constructor(private contactService: ContactService, private router: Router) { }
 
     ngOnInit(): void {
-        this.setup()
+        this.contactService.loadContacts({ term: this.term })
+        // this.contacts$ = this.contactService.contacts$ // use async pipe on the DOM to use it
+
+        this.subscription = this.contactService.contacts$.subscribe(contacts => this.contacts$ = contacts)
     }
 
     onSetFilter() {
-        this.setup()
-    }
-
-    setup() {
         this.contactService.loadContacts({ term: this.term })
-        this.contacts = this.contactService.contacts$
-
-        // getting the data from observable
-        this.contacts = this.contacts.source._value
     }
 
-    goBack() {
-        // TODO
+    // goBack() {
+    //     this.router.navigateByUrl('')
+    // }
+
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe()
     }
 }

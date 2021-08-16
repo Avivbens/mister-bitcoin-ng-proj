@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
+import { ActivatedRoute, Router } from '@angular/router'
+import { Subscription } from 'rxjs'
 import { Contact } from 'src/app/models/contact.model'
 
 @Component({
@@ -8,23 +10,30 @@ import { Contact } from 'src/app/models/contact.model'
 })
 export class ContactEditComponent implements OnInit {
 
-    @Input() contactProp: Contact
-
     public contact: Contact = null
+    public subscription: Subscription = null
+
+    constructor(private router: Router, private route: ActivatedRoute) { }
 
     ngOnInit(): void {
-        this.contact = JSON.parse(JSON.stringify(this.contactProp ?? null))
+        this.subscription = this.route.data.subscribe(data => {
+            this.contact = data.contact
+        })
     }
-
 
     goBack() {
-        // TODO
+        this.router.navigateByUrl('contact')
     }
     removeContact() {
-        // TODO
+        // TODO - remove contact with service
     }
     saveContact() {
-        // TODO
+        // TODO - save changes on contact with service
     }
 
+    ngOnDestroy(): void {
+        //Called once, before the instance is destroyed.
+        //Add 'implements OnDestroy' to the class.
+        this.subscription.unsubscribe()
+    }
 }

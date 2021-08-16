@@ -14,6 +14,6 @@ export class TransferFundComponent {
 
 
     transfer() {
-        // TODO
+        // TODO - transfer money in service
     }
 }

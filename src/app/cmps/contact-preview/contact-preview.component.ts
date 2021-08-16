@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 import { Contact } from 'src/app/models/contact.model'
 
 @Component({
@@ -9,10 +10,10 @@ import { Contact } from 'src/app/models/contact.model'
 export class ContactPreviewComponent {
 
     @Input() contact: Contact
-    constructor() { }
+    constructor(private router: Router) { }
 
     selectContact() {
-        // TODO
+        this.router.navigateByUrl('details/' + this.contact._id)
     }
 
 }

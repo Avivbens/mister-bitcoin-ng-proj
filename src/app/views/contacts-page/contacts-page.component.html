@@ -7,11 +7,12 @@
             (input)="onSetFilter()"
             name="term" />
 
-        <button (click)="goBack()">
+        <button routerLink="add">
             <img src="../../../assets/imgs/plus.png"
                 alt="add" />
         </button>
     </div>
 
-    <app-contact-list [contacts]="contacts"></app-contact-list>
+    <app-contact-list [contacts]="contacts$"></app-contact-list>
+    <!-- <app-contact-list [contacts]="contacts$|async"></app-contact-list> -->
 </section>

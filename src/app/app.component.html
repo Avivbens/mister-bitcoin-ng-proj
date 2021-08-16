@@ -1,24 +1,3 @@
 <app-header (pageChange)="onChangePage($event)"></app-header>
 
-<pre>
-    {{page}}
-</pre>
-<ng-container *ngIf="page==='home'">
-    <app-homepage></app-homepage>
-</ng-container>
-
-<ng-container *ngIf="page==='signup'">
-    <app-signup-page (pageChange)="onChangePage($event)"></app-signup-page>
-</ng-container>
-
-<ng-container *ngIf="page==='contact'">
-    <app-contacts-page></app-contacts-page>
-</ng-container>
-
-<ng-container *ngIf="page==='contact-details'">
-    <app-contact-details></app-contact-details>
-</ng-container>
-
-<ng-container *ngIf="page==='contact-edit'">
-    <app-contact-edit></app-contact-edit>
-</ng-container>
+<router-outlet></router-outlet>
