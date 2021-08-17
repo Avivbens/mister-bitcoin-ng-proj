@@ -1,16 +1,16 @@
 <section class="app-header">
     <nav>
         <button routerLink="">
-            <img src="../../../assets/imgs/home.png"
-                alt="person" />
+            <img src="./assets/imgs/home.png"
+                alt="home" />
         </button>
         <button routerLink="contact">
-            <img src="../../../assets/imgs/users.png"
-                alt="person" />
+            <img src="./assets/imgs/users.png"
+                alt="users" />
         </button>
         <button routerLink="charts">
-            <img src="../../../assets/imgs/increase.png"
-                alt="person" />
+            <img src="./assets/imgs/increase.png"
+                alt="statistics" />
         </button>
         <ng-container *ngIf="user; else elseTemplate">
             <button (click)="onLogout()">
