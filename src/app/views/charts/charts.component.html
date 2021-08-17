@@ -2,7 +2,7 @@
     <h1>Bitcoin Statistics</h1>
 
     <google-chart #chart
-        *ngIf="marketPriceData"
+        *ngIf="marketPrice"
         [width]="600"
         [title]="marketPrice.title"
         [type]="marketPrice.type"
@@ -11,7 +11,7 @@
     </google-chart>
 
     <google-chart #chart
-        *ngIf="confirmedTransactionsData"
+        *ngIf="confirmedTransactions"
         [width]="600"
         [title]="confirmedTransactions.title"
         [type]="confirmedTransactions.type"

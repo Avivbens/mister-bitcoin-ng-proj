@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core'
 import { Observable } from 'rxjs'
 import { Move } from 'src/app/models/move'
 import { BitcoinService } from 'src/app/services/bitcoin.service'
@@ -6,7 +6,8 @@ import { BitcoinService } from 'src/app/services/bitcoin.service'
 @Component({
     selector: 'app-moves-list',
     templateUrl: './moves-list.component.html',
-    styleUrls: ['./moves-list.component.scss']
+    styleUrls: ['./moves-list.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MovesListComponent implements OnInit {
     @Input() fullView: boolean
@@ -14,7 +15,7 @@ export class MovesListComponent implements OnInit {
 
     public rate: any = null;
 
-    constructor(private bitcoinService: BitcoinService) { }
+    constructor(private bitcoinService: BitcoinService, private cd: ChangeDetectorRef) { }
 
     get moves(): Move[] {
         const moves = JSON.parse(JSON.stringify(this.movesProp ?? null))
@@ -25,5 +26,6 @@ export class MovesListComponent implements OnInit {
 
     async ngOnInit(): Promise<any> {
         this.rate = await this.bitcoinService.getRate()
+        this.cd.markForCheck()
     }
 }

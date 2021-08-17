@@ -35,8 +35,6 @@ export class UserService {
         // const copyUser = JSON.parse(JSON.stringify(loggedinUser))
         // delete copyUser.password
         localStorage.loggedinUser = JSON.stringify(loggedinUser)
-
-        location.reload()
     }
 
     logout() {

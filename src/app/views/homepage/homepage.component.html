@@ -15,12 +15,14 @@
                     </span>
                 </span>
             </div>
+
+
+            <app-moves-list [movesProp]="user.moves"
+                [fullView]="true"></app-moves-list>
+
         </ng-container>
         <ng-template #elseTemplate>
             <h3>Please Login!</h3>
         </ng-template>
-
-        <app-moves-list [movesProp]="user.moves"
-            [fullView]="true"></app-moves-list>
     </div>
 </section>

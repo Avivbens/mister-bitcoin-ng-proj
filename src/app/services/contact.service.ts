@@ -179,13 +179,13 @@ export class ContactService {
         return new Promise(async (resolve, reject) => {
             const loggedinUser = JSON.parse(localStorage.loggedinUser)
             if (!loggedinUser || !amount || loggedinUser.balance < amount || amount < 0) return reject()
+
             try {
                 const contact = await this.getContactById(contactId).toPromise()
                 contact.balance ??= 0
                 contact.balance += amount
 
                 loggedinUser.balance -= amount
-
 
                 const transfer: any = {
                     toId: contact._id,

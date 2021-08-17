@@ -1,22 +1,15 @@
-import { Component } from '@angular/core'
-import {
-    ChartErrorEvent,
-    ChartMouseLeaveEvent,
-    ChartMouseOverEvent,
-    ChartSelectionChangedEvent,
-    ChartType,
-    Column,
-} from 'angular-google-charts'
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core'
 import { BitcoinService } from 'src/app/services/bitcoin.service'
 
 @Component({
     selector: 'charts-app',
     templateUrl: './charts.component.html',
-    styleUrls: ['./charts.component.scss']
+    styleUrls: ['./charts.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartsComponent {
 
-    constructor(private bitcoinService: BitcoinService) { }
+    constructor(private bitcoinService: BitcoinService, private cd: ChangeDetectorRef) { }
 
     public marketPriceData: any = null
     public confirmedTransactionsData: any = null
@@ -59,5 +52,7 @@ export class ChartsComponent {
             width: 1000,
             height: 400
         }
+
+        this.cd.markForCheck()
     }
 }

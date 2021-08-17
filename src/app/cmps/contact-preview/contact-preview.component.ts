@@ -1,11 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { Contact } from 'src/app/models/contact.model'
 
 @Component({
     selector: 'app-contact-preview',
     templateUrl: './contact-preview.component.html',
-    styleUrls: ['./contact-preview.component.scss']
+    styleUrls: ['./contact-preview.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactPreviewComponent {
 

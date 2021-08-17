@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { Subscription } from 'rxjs'
 import { Contact } from 'src/app/models/contact.model'
@@ -7,7 +7,8 @@ import { ContactService } from 'src/app/services/contact.service'
 @Component({
     selector: 'app-contact-edit',
     templateUrl: './contact-edit.component.html',
-    styleUrls: ['./contact-edit.component.scss']
+    styleUrls: ['./contact-edit.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactEditComponent implements OnInit {
 
